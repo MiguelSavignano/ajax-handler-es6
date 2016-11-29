@@ -36,7 +36,7 @@ class Api {
     });
   }
 
-  static parseRequestArguments = (...agrs) => {
+  static parseRequestArguments(...agrs) {
     if( Api.isFunction(agrs[1]) ){
       return { data: undefined, callbackSucess: agrs[1], callbackerror: agrs[2] }
     }else{
@@ -49,3 +49,4 @@ class Api {
   }
 
 }
+export default Api
