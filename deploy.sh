@@ -1,4 +1,4 @@
-# ./build
-# # npm version minor
-# # npm version major
-# npm publish
+./build 
+npm version patch
+npm publish
+git push origin master
