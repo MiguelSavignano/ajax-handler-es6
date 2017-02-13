@@ -1,1 +1,1 @@
-module.exports = require('./lib/backend_service');
+module.exports = require('./lib/ajax_handler_es6');
