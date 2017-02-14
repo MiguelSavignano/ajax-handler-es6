@@ -40,7 +40,7 @@ export default class AjaxHandler {
       // beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       type: type,
       dataType: 'json',
-      success: function(response) {
+      success: (response) => {
         Api.onRequestSuccess(response)
         if(callbackSucess){ callbackSucess(response) }
       },
