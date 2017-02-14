@@ -1,22 +1,22 @@
 export default class AjaxHandler {
   static get(...agrs){
-    const {url, data, callbackSucess, callbackError } = Api._parseRequestArguments(...agrs)
-    return Api._request("GET", url, data, callbackSucess, callbackError )
+    const {url, data, callbackSucess, callbackError } = this._parseRequestArguments(...agrs)
+    return this._request("GET", url, data, callbackSucess, callbackError )
   }
 
   static post(...agrs){
-    const {url, data, callbackSucess, callbackError } = Api._parseRequestArguments(...agrs)
-    return Api._request("POST", url, data, callbackSucess, callbackError )
+    const {url, data, callbackSucess, callbackError } = this._parseRequestArguments(...agrs)
+    return this._request("POST", url, data, callbackSucess, callbackError )
   }
 
   static put(...agrs){
-    const {url, data, callbackSucess, callbackError } = Api._parseRequestArguments(...agrs)
-    return Api._request("PUT", url, data, callbackSucess, callbackError )
+    const {url, data, callbackSucess, callbackError } = this._parseRequestArguments(...agrs)
+    return this._request("PUT", url, data, callbackSucess, callbackError )
   }
 
   static delete(...agrs){
-    const {url, data, callbackSucess, callbackError } = Api._parseRequestArguments(...agrs)
-    return Api._request("DELETE", url, data, callbackSucess, callbackError )
+    const {url, data, callbackSucess, callbackError } = this._parseRequestArguments(...agrs)
+    return this._request("DELETE", url, data, callbackSucess, callbackError )
   }
 
   static onRequestUnauthorized(response){ }
@@ -27,9 +27,9 @@ export default class AjaxHandler {
 
   static _onRequestErrorHandler(response){
     if(response.status == 401){
-      Api.onRequestUnauthorized(response.responseJSON, response)
+      this.onRequestUnauthorized(response.responseJSON, response)
     }
-    Api.onRequestError(response)
+    this.onRequestError(response)
   }
 
   static _request(type, url, data, callbackSucess, callbackError){
@@ -41,18 +41,18 @@ export default class AjaxHandler {
       type: type,
       dataType: 'json',
       success: (response) => {
-        Api.onRequestSuccess(response)
+        this.onRequestSuccess(response)
         if(callbackSucess){ callbackSucess(response) }
       },
       error: (response) => {
-        Api._onRequestErrorHandler(response)
+        this._onRequestErrorHandler(response)
         if(callbackError){ callbackError(response) }
       }
     });
   }
 
   static _parseRequestArguments(...agrs) {
-    if (Api._isFunction(agrs[1])) {
+    if (this._isFunction(agrs[1])) {
       return {
         url: agrs[0],
         callbackSucess: agrs[1],
